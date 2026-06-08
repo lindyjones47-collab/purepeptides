@@ -366,10 +366,15 @@ body.menu-open{overflow:hidden}
 
   /* Topbar simpler */
   .topbar{font-size:11px;padding:7px 0}
-  .topbar-in{padding:0 14px;justify-content:center;text-align:center;flex-wrap:wrap;gap:6px}
+  .topbar-in{padding:6px 12px;justify-content:center;text-align:center;flex-wrap:wrap;gap:6px}
   .ticker{display:none}
-  .topbar-r{justify-content:center;gap:8px;font-size:11px}
+  .topbar-r{justify-content:center;gap:8px;font-size:11px;flex-wrap:wrap;width:100%}
   .topbar-r .tb-div{display:none}
+  /* Make language/currency dropdowns more visible & touchable on mobile */
+  .cur-sel{background:rgba(255,255,255,.08);border-color:#3a5a7a;color:#cfe0f0;padding:5px 8px;font-size:12px;min-height:32px}
+  /* Hide long redundant links that already live in the hamburger menu */
+  .topbar-r a[href="calculator.html"],
+  .topbar-r a[href="order-status.html"]{display:none}
 
   /* Secondary nav strip (under header) */
   .nav-in{padding:0 14px}
