@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peptide Calculator Tool — PurePeptides</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <div>🚚 Same-day dispatch before 3PM · 🔬 &gt;99% purity guaranteed</div>
+  <div class="topbar-r">
+    <a href="calculator.html">Peptide Calculator Tool</a><span class="tb-div">|</span>
+    <a href="order-status.html">Check Order Status</a><span class="tb-div">|</span>
+    <a href="https://wa.me/33758563517" target="_blank" rel="noopener">WhatsApp: +33 7 58 56 35 17</a>
+  </div>
+</div></div>
+<header class="hdr"><div class="hdr-in">
+  <a href="index.html" class="logo">
+    <svg class="logo-mk" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="11" fill="#0d1b2a"/><circle cx="23" cy="23" r="13" stroke="#00c8b4" stroke-width="2"/><circle cx="23" cy="23" r="6.5" fill="#0077b6"/><path d="M16 23 Q23 14 30 23 Q23 32 16 23Z" fill="#00c8b4" opacity=".65"/><text x="23" y="27" text-anchor="middle" font-family="serif" font-size="8.5" font-weight="bold" fill="#fff">PP</text></svg>
+    <div><div class="logo-nm">Pure<em>Peptides</em></div><div class="logo-tg">Research Grade · Est. 2012</div></div>
+  </a>
+  <nav class="hdr-nav">
+    <a href="index.html">Home</a><a href="index.html#products">Shop</a><a href="faq.html">FAQ</a>
+    <a href="delivery.html">Delivery</a><a href="calculator.html">Calculator</a>
+    <a href="order-status.html">Order Status</a><a href="checkout.html" class="hdr-cta">Checkout</a>
+  </nav>
+</div></header><section class="page-hero"><div class="page-hero-in"><div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Peptide Calculator</div><h1>Peptide Calculator <em>Tool</em></h1><p>Reconstitute with confidence — calculate concentration and syringe units.</p></div></section><main class="wrap">
+<div class="calc-grid">
+  <div>
+    <div class="form-card">
+      <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px">Reconstitution Calculator</h2>
+      <p style="color:var(--gray);font-size:13.5px;margin-bottom:22px">Work out exactly how much your research dose measures on an insulin syringe after reconstitution.</p>
+      <div class="form-row"><div class="field full"><label>Peptide amount in vial (mg)</label><input type="number" id="pepMg" value="5" min="0" step="0.1"></div></div>
+      <div class="form-row"><div class="field full"><label>Bacteriostatic water added (ml)</label><input type="number" id="waterMl" value="2" min="0" step="0.1"></div></div>
+      <div class="form-row"><div class="field full"><label>Desired dose (mcg)</label><input type="number" id="doseMcg" value="250" min="0" step="1"></div></div>
+      <div class="form-row"><div class="field full"><label>Syringe size</label><select id="syringe"><option value="100">U-100 (1ml = 100 units)</option><option value="50">U-100 ½ml (50 units)</option><option value="30">U-100 0.3ml (30 units)</option></select></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="calc-out">
+      <h3>Your Result</h3>
+      <div class="calc-result" id="rUnits">25</div>
+      <div class="calc-result-l">units on the syringe per dose</div>
+      <div class="calc-line"><span>Concentration</span><strong id="rConc">2.50 mg/ml</strong></div>
+      <div class="calc-line"><span>Concentration</span><strong id="rConc2">2500 mcg/ml</strong></div>
+      <div class="calc-line"><span>Volume per dose</span><strong id="rVol">0.10 ml</strong></div>
+      <div class="calc-line"><span>Doses per vial</span><strong id="rDoses">20</strong></div>
+      <p class="calc-note">For laboratory research calculations only. Always verify measurements independently. Not intended to guide human or animal use.</p>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="ft-top">
+    <div><div class="logo-nm" style="font-size:24px;color:#fff;margin-bottom:10px">Pure<em style="color:#00c8b4;font-style:normal">Peptides</em></div>
+      <p class="ft-disc"><strong>Disclaimer:</strong> All products are strictly for <strong>research purposes only</strong> — not for human use. Not medical products.</p>
+      <p class="ft-disc" style="margin-top:10px"><strong>Contact:</strong> <a href="mailto:sales@europemeds.com" style="color:#00c8b4">sales@europemeds.com</a><br><strong>WhatsApp:</strong> <a href="https://wa.me/33758563517" style="color:#00c8b4" target="_blank" rel="noopener">+33 7 58 56 35 17</a></p>
+    </div>
+    <div><div class="ft-ct">Information</div><div class="ft-lk"><a href="index.html#about">About Us</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div></div>
+    <div><div class="ft-ct">My Account</div><div class="ft-lk"><a href="order-status.html">Order Status</a><a href="checkout.html">Checkout</a><a href="returns.html">Returns</a><a href="calculator.html">Peptide Calculator</a></div></div>
+    <div><div class="ft-ct">Customer Service</div><div class="ft-lk"><a href="mailto:sales@europemeds.com">Contact Us</a><a href="delivery.html">Delivery Information</a><a href="https://wa.me/33758563517" target="_blank" rel="noopener">WhatsApp Chat</a></div></div>
+  </div>
+  <hr class="ft-hr">
+  <div class="ft-bot">For all orders and inquiries, contact <a href="mailto:sales@europemeds.com">sales@europemeds.com</a> · WhatsApp <a href="https://wa.me/33758563517" target="_blank" rel="noopener">+33 7 58 56 35 17</a><br>© 2012–2025 PurePeptides™ | Company No. 08033431 | VAT No. 271775577</div>
+</footer>
+<script src="assets/shared.js"></script>
+<script>
+function calc(){
+  const mg=parseFloat(document.getElementById('pepMg').value)||0;
+  const ml=parseFloat(document.getElementById('waterMl').value)||0;
+  const dose=parseFloat(document.getElementById('doseMcg').value)||0;
+  const syr=parseFloat(document.getElementById('syringe').value)||100;
+  const concMgMl = ml>0? mg/ml : 0;
+  const concMcgMl = concMgMl*1000;
+  const volMl = concMcgMl>0? dose/concMcgMl : 0;
+  const units = volMl*100; // U-100 standard: 1ml=100iu
+  const doses = dose>0? Math.floor((mg*1000)/dose):0;
+  document.getElementById('rUnits').textContent = units.toFixed(1);
+  document.getElementById('rConc').textContent = concMgMl.toFixed(2)+' mg/ml';
+  document.getElementById('rConc2').textContent = Math.round(concMcgMl)+' mcg/ml';
+  document.getElementById('rVol').textContent = volMl.toFixed(3)+' ml';
+  document.getElementById('rDoses').textContent = doses;
+}
+['pepMg','waterMl','doseMcg','syringe'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+calc();
+</script>
+</body></html>

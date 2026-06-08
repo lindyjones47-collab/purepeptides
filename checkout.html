@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — PurePeptides</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <div>🚚 Same-day dispatch before 3PM · 🔬 &gt;99% purity guaranteed</div>
+  <div class="topbar-r">
+    <a href="calculator.html">Peptide Calculator Tool</a><span class="tb-div">|</span>
+    <a href="order-status.html">Check Order Status</a><span class="tb-div">|</span>
+    <a href="https://wa.me/33758563517" target="_blank" rel="noopener">WhatsApp: +33 7 58 56 35 17</a>
+  </div>
+</div></div>
+<header class="hdr"><div class="hdr-in">
+  <a href="index.html" class="logo">
+    <svg class="logo-mk" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="11" fill="#0d1b2a"/><circle cx="23" cy="23" r="13" stroke="#00c8b4" stroke-width="2"/><circle cx="23" cy="23" r="6.5" fill="#0077b6"/><path d="M16 23 Q23 14 30 23 Q23 32 16 23Z" fill="#00c8b4" opacity=".65"/><text x="23" y="27" text-anchor="middle" font-family="serif" font-size="8.5" font-weight="bold" fill="#fff">PP</text></svg>
+    <div><div class="logo-nm">Pure<em>Peptides</em></div><div class="logo-tg">Research Grade · Est. 2012</div></div>
+  </a>
+  <nav class="hdr-nav">
+    <a href="index.html">Home</a><a href="index.html#products">Shop</a><a href="faq.html">FAQ</a>
+    <a href="delivery.html">Delivery</a><a href="calculator.html">Calculator</a>
+    <a href="order-status.html">Order Status</a><a href="checkout.html" class="hdr-cta">Checkout</a>
+  </nav>
+</div></header><section class="page-hero"><div class="page-hero-in"><div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Checkout</div><h1>Checkout</h1><p>Enter your delivery details to place your order.</p></div></section><main class="wrap">
+<div class="checkout-grid">
+  <div>
+    <div class="form-card">
+      <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px">Delivery Details</h2>
+      <p style="color:var(--gray);font-size:13.5px;margin-bottom:22px">Enter your shipping information below. After you place your order, our team will contact you by email or WhatsApp with bank payment details to complete your purchase.</p>
+      <form id="coForm" novalidate>
+        <div class="form-row">
+          <div class="field"><label>First name *</label><input name="firstName" required><span class="err-msg">Required</span></div>
+          <div class="field"><label>Last name *</label><input name="lastName" required><span class="err-msg">Required</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Email address *</label><input type="email" name="email" required><span class="err-msg">Valid email required</span></div>
+          <div class="field"><label>Phone / WhatsApp *</label><input name="phone" required placeholder="+.."><span class="err-msg">Required</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label>Address line 1 *</label><input name="addr1" required><span class="err-msg">Required</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label>Address line 2</label><input name="addr2"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>City *</label><input name="city" required><span class="err-msg">Required</span></div>
+          <div class="field"><label>Postal / ZIP code *</label><input name="zip" required><span class="err-msg">Required</span></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Country *</label><input name="country" required><span class="err-msg">Required</span></div>
+          <div class="field"><label>Preferred contact</label><select name="contactPref"><option>Email</option><option>WhatsApp</option><option>Either</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label>Order notes (optional)</label><textarea name="notes" placeholder="Anything we should know about your order or delivery..."></textarea></div>
+        </div>
+        <button type="submit" class="btn-primary btn-block">Place Order →</button>
+        <p style="font-size:11.5px;color:var(--gray);text-align:center;margin-top:12px">🔒 Your details are only used to process and deliver your order. See our <a href="privacy.html" style="color:var(--blue)">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </div>
+  <div>
+    <div class="summary">
+      <h3>Order Summary</h3>
+      <div id="sumItems"></div>
+      <div class="sum-total"><span>Total</span><strong id="sumTotal">£0.00</strong></div>
+      <div class="pay-banner">
+        <strong>💳 Payment Information</strong>
+        Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.
+      </div>
+      <a href="index.html#products" class="btn-dark btn-block" style="display:block;text-align:center;margin-top:14px;text-decoration:none">← Continue Shopping</a>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation overlay -->
+<div class="co-confirm" id="ok" style="position:fixed;inset:0;z-index:620;display:none;align-items:center;justify-content:center;background:rgba(13,27,42,.75);backdrop-filter:blur(4px);padding:20px">
+  <div style="background:#fff;border-radius:16px;max-width:460px;width:100%;padding:34px 30px;text-align:center;box-shadow:var(--sh-lg)">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px">✓</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--navy);margin-bottom:10px">Order Received!</h2>
+    <p style="color:#46586b;font-size:14px;line-height:1.65;margin-bottom:14px">Thank you for your order, <strong id="okName">researcher</strong>. Your order reference is <strong id="okRef">#PP-000000</strong>.</p>
+    <p style="color:#46586b;font-size:14px;line-height:1.65;margin-bottom:18px">Our team will contact you shortly via <strong>email or WhatsApp</strong> with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</p>
+    <a id="okWa" class="wa-start" style="text-decoration:none;margin-bottom:10px" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5C10 8.5 9.5 7.1 9.3 6.6c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 5 4.3 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4 0-.1-.2-.2-.5-.3z"/></svg>
+      Confirm via WhatsApp
+    </a>
+    <a href="index.html" class="btn-dark btn-block" style="display:block;text-decoration:none;margin-top:6px">Back to Home</a>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="ft-top">
+    <div><div class="logo-nm" style="font-size:24px;color:#fff;margin-bottom:10px">Pure<em style="color:#00c8b4;font-style:normal">Peptides</em></div>
+      <p class="ft-disc"><strong>Disclaimer:</strong> All products are strictly for <strong>research purposes only</strong> — not for human use. Not medical products.</p>
+      <p class="ft-disc" style="margin-top:10px"><strong>Contact:</strong> <a href="mailto:sales@europemeds.com" style="color:#00c8b4">sales@europemeds.com</a><br><strong>WhatsApp:</strong> <a href="https://wa.me/33758563517" style="color:#00c8b4" target="_blank" rel="noopener">+33 7 58 56 35 17</a></p>
+    </div>
+    <div><div class="ft-ct">Information</div><div class="ft-lk"><a href="index.html#about">About Us</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div></div>
+    <div><div class="ft-ct">My Account</div><div class="ft-lk"><a href="order-status.html">Order Status</a><a href="checkout.html">Checkout</a><a href="returns.html">Returns</a><a href="calculator.html">Peptide Calculator</a></div></div>
+    <div><div class="ft-ct">Customer Service</div><div class="ft-lk"><a href="mailto:sales@europemeds.com">Contact Us</a><a href="delivery.html">Delivery Information</a><a href="https://wa.me/33758563517" target="_blank" rel="noopener">WhatsApp Chat</a></div></div>
+  </div>
+  <hr class="ft-hr">
+  <div class="ft-bot">For all orders and inquiries, contact <a href="mailto:sales@europemeds.com">sales@europemeds.com</a> · WhatsApp <a href="https://wa.me/33758563517" target="_blank" rel="noopener">+33 7 58 56 35 17</a><br>© 2012–2025 PurePeptides™ | Company No. 08033431 | VAT No. 271775577</div>
+</footer>
+<script src="assets/shared.js"></script>
+<script>
+const CUR={GBP:{s:'£',r:1},EUR:{s:'€',r:1.17},USD:{s:'$',r:1.26}};
+let cart={},curC='GBP';
+try{const s=JSON.parse(localStorage.getItem('pp_cart')||'{}');cart=s.items||{};curC=s.cur||'GBP';}catch(e){}
+function fmt(g){const c=CUR[curC]||CUR.GBP;return c.s+(g*c.r).toFixed(2);}
+function renderSummary(){
+  const items=Object.values(cart);const box=document.getElementById('sumItems');
+  if(!items.length){box.innerHTML='<div class="empty-cart">Your cart is empty.<br><a href="index.html#products" style="color:var(--blue);font-weight:700">Browse products →</a></div>';document.getElementById('sumTotal').textContent=fmt(0);return;}
+  let total=0;
+  box.innerHTML=items.map(i=>{total+=i.product.priceGBP*i.qty;return '<div class="sum-row"><span class="nm">'+i.product.name+' × '+i.qty+'</span><span class="pr">'+fmt(i.product.priceGBP*i.qty)+'</span></div>';}).join('');
+  document.getElementById('sumTotal').textContent=fmt(total);
+}
+renderSummary();
+function orderRef(){return '#PP-'+Math.floor(100000+Math.random()*900000);}
+document.getElementById('coForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  let ok=true;
+  this.querySelectorAll('[required]').forEach(f=>{
+    const bad=!f.value.trim()||(f.type==='email'&&!/^[^@]+@[^@]+\.[^@]+$/.test(f.value));
+    f.classList.toggle('field-err',bad);f.closest('.field').classList.toggle('show-err',bad);
+    if(bad)ok=false;
+  });
+  if(!ok)return;
+  if(!Object.keys(cart).length){alert('Your cart is empty. Please add products before checking out.');return;}
+  const fd=new FormData(this);
+  const ref=orderRef();
+  const items=Object.values(cart).map(i=>i.product.name+' x'+i.qty).join(', ');
+  let total=0;Object.values(cart).forEach(i=>total+=i.product.priceGBP*i.qty);
+  document.getElementById('okName').textContent=fd.get('firstName')||'researcher';
+  document.getElementById('okRef').textContent=ref;
+  const waMsg='Hello PurePeptides! I have placed order '+ref+'. Name: '+fd.get('firstName')+' '+fd.get('lastName')+'. Items: '+items+'. Total: '+fmt(total)+'. Please send bank payment details.';
+  document.getElementById('okWa').href='https://wa.me/33758563517?text='+encodeURIComponent(waMsg);
+  // Save order + clear cart
+  try{
+    const orders=JSON.parse(localStorage.getItem('pp_orders')||'{}');
+    orders[ref]={ref,date:new Date().toISOString(),name:fd.get('firstName')+' '+fd.get('lastName'),email:fd.get('email'),items,total:fmt(total),status:'received'};
+    localStorage.setItem('pp_orders',JSON.stringify(orders));
+    localStorage.setItem('pp_last_order',ref);
+    localStorage.setItem('pp_cart',JSON.stringify({items:{},cur:curC}));
+    cart={};renderSummary();
+  }catch(e){}
+  document.getElementById('ok').style.display='flex';
+});
+</script>
+</body></html>
