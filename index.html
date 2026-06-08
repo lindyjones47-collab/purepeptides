@@ -469,7 +469,8 @@ body.menu-open{overflow:hidden}
 }
 
 
-.wa-float{position:fixed;bottom:24px;right:24px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:12px;transition:opacity .2s,transform .2s}
+body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.8);pointer-events:none}
 .wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.45);transition:transform .2s}
 .wa-btn:hover{transform:scale(1.08)}.wa-btn svg{width:32px;height:32px;fill:#fff}
 .wa-panel{background:#fff;border-radius:16px;box-shadow:var(--sh-lg);width:330px;max-width:calc(100vw - 48px);overflow:hidden;transform:scale(.9) translateY(10px);opacity:0;pointer-events:none;transform-origin:bottom right;transition:.25s;position:relative}
@@ -503,7 +504,7 @@ body.menu-open{overflow:hidden}
   <div class="topbar-r">
     <select class="cur-sel" id="langSel" style="margin-right:4px"><option value="en">🇬🇧 EN</option><option value="fr">🇫🇷 FR</option><option value="nl">🇳🇱 NL</option><option value="de">🇩🇪 DE</option></select><select class="cur-sel" id="curSel"><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option><option value="USD">$ USD</option></select>
     <a href="mailto:sales@europemeds.com">✉️ sales@europemeds.com</a>
-    <span class="tb-div">|</span><a href="https://wa.me/33758563517" target="_blank" rel="noopener">💬 +33 7 58 56 35 17</a>
+    <span class="tb-div">|</span><a href="https://wa.me/33758563517" target="_blank" rel="noopener">💬 WhatsApp Chat</a>
     <span class="tb-div">|</span><a href="calculator.html" data-i18n="calc">Peptide Calculator Tool</a>
     <span class="tb-div">|</span><a href="order-status.html" data-i18n="orderStatus">Check Order Status</a>
   </div>
@@ -877,9 +878,9 @@ function renderWish(){const b=document.getElementById('wishBody');
 
 function openModal(id){mProd=PRODUCTS.find(x=>x.id===id);if(!mProd)return;mQty=1;const p=mProd,out=p.stock==='Out Of Stock',pre=p.stock==='Pre-Order';
   document.getElementById('mbody').innerHTML='<div class="mimg"><img src="'+p.img+'" alt="'+p.name+'"></div><div class="minfo"><div class="mbr">'+badgeHTML(p)+'<span class="pb" style="background:#0077b6">Research Grade</span></div><div class="mnm">'+p.name+'</div><div class="mmol">'+(p.mol||'Molecular Formula: N/A')+'</div><div class="mpr"><small>'+t('from')+' </small>'+fmt(p.priceGBP)+'</div><div class="mstk"><span class="sdot '+(out?'out':pre?'pre':'')+'"></span> '+p.stock+'</div><p class="mds">'+(p.desc||'')+' Manufactured in our state-of-the-art facility with &gt;99% purity. For research use only.</p><div class="mqr"><span class="mql">Quantity:</span><div class="mqc"><button class="mqb" onclick="mAdj(-1)">−</button><input class="mqv" id="mqv" value="1" readonly><button class="mqb" onclick="mAdj(1)">+</button></div></div><button class="matc" '+(out?'disabled style="background:#6b7e96"':'')+' onclick="addCart('+p.id+',mQty);closeModal()">'+(out?t('outStock'):t('addToCart')+' — '+fmt(p.priceGBP))+'</button><p class="mnote">'+t('mNote')+'</p></div>';
-  document.getElementById('mov').classList.add('open');document.getElementById('pmodal').classList.add('open');document.body.style.overflow='hidden';}
+  document.getElementById('mov').classList.add('open');document.getElementById('pmodal').classList.add('open');document.body.style.overflow='hidden';syncOverlayState();}
 function mAdj(d){mQty=Math.max(1,mQty+d);document.getElementById('mqv').value=mQty;if(mProd)document.querySelector('.matc').textContent=t('addToCart')+' — '+fmt(mProd.priceGBP*mQty);}
-function closeModal(){document.getElementById('mov').classList.remove('open');document.getElementById('pmodal').classList.remove('open');document.body.style.overflow='';}
+function closeModal(){document.getElementById('mov').classList.remove('open');document.getElementById('pmodal').classList.remove('open');document.body.style.overflow='';syncOverlayState();}
 
 function heroMove(d){clearInterval(hTimer);hIdx=(hIdx+d+3)%3;updateHero();hTimer=setInterval(()=>heroMove(1),6000);}
 function heroGo(i){clearInterval(hTimer);hIdx=i;updateHero();hTimer=setInterval(()=>heroMove(1),6000);}
@@ -918,9 +919,16 @@ so.observe(document.querySelector('.stats'));
 
 let tT;function toast(msg,icon){const t=document.getElementById('toast');document.getElementById('toastMsg').textContent=msg;document.getElementById('toastIcon').textContent=icon||'✓';t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),3000);}
 
-function toggleCart(){const ov=document.getElementById('ov');document.getElementById('wishDrawer').classList.remove('open');const d=document.getElementById('cartDrawer');const o=d.classList.toggle('open');ov.classList.toggle('open',o||document.getElementById('wishDrawer').classList.contains('open'));}
-function toggleWish(){const ov=document.getElementById('ov');document.getElementById('cartDrawer').classList.remove('open');const d=document.getElementById('wishDrawer');const o=d.classList.toggle('open');ov.classList.toggle('open',o||document.getElementById('cartDrawer').classList.contains('open'));}
-function closeAll(){document.getElementById('ov').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.getElementById('wishDrawer').classList.remove('open');}
+// Sync body class so we can hide things (WhatsApp float) when any overlay is open
+function syncOverlayState(){
+  const cartOpen=document.getElementById('cartDrawer').classList.contains('open');
+  const wishOpen=document.getElementById('wishDrawer').classList.contains('open');
+  const modalOpen=document.getElementById('pmodal').classList.contains('open');
+  document.body.classList.toggle('overlay-open',cartOpen||wishOpen||modalOpen);
+}
+function toggleCart(){const ov=document.getElementById('ov');document.getElementById('wishDrawer').classList.remove('open');const d=document.getElementById('cartDrawer');const o=d.classList.toggle('open');ov.classList.toggle('open',o||document.getElementById('wishDrawer').classList.contains('open'));syncOverlayState();}
+function toggleWish(){const ov=document.getElementById('ov');document.getElementById('cartDrawer').classList.remove('open');const d=document.getElementById('wishDrawer');const o=d.classList.toggle('open');ov.classList.toggle('open',o||document.getElementById('cartDrawer').classList.contains('open'));syncOverlayState();}
+function closeAll(){document.getElementById('ov').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.getElementById('wishDrawer').classList.remove('open');syncOverlayState();}
 function openCheckout(){
   if(!Object.keys(cart).length){toast(t('cartEmpty'),'🛒');return;}
   persistCart();
