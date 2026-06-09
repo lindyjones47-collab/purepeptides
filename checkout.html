@@ -68,6 +68,7 @@
       <h3>Order Summary</h3>
       <div id="sumItems"></div>
       <div class="sum-total"><span>Total</span><strong id="sumTotal">£0.00</strong></div>
+      <div class="min-note" id="coMinNote" style="display:none"></div>
       <div class="pay-banner">
         <strong>💳 Payment Information</strong>
         Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.
@@ -108,6 +109,8 @@
 <script src="assets/shared.js"></script>
 <script>
 const CUR={GBP:{s:'£',r:1},EUR:{s:'€',r:1.17},USD:{s:'$',r:1.26}};
+const MIN_ORDER_EUR=100; // minimum order value in euros
+function eurShort(v){return '€'+v.toFixed(2);}
 let cart={},curC='GBP';
 try{const s=JSON.parse(localStorage.getItem('pp_cart')||'{}');cart=s.items||{};curC=s.cur||'GBP';}catch(e){}
 function fmt(g){const c=CUR[curC]||CUR.GBP;return c.s+(g*c.r).toFixed(2);}
@@ -117,6 +120,19 @@ function renderSummary(){
   let total=0;
   box.innerHTML=items.map(i=>{total+=i.product.priceGBP*i.qty;return '<div class="sum-row"><span class="nm">'+i.product.name+' × '+i.qty+'</span><span class="pr">'+fmt(i.product.priceGBP*i.qty)+'</span></div>';}).join('');
   document.getElementById('sumTotal').textContent=fmt(total);
+  updateMinNote(total);
+}
+function updateMinNote(total){
+  const eur=total*CUR.EUR.r, note=document.getElementById('coMinNote'), btn=document.querySelector('#coForm button[type="submit"]');
+  if(!note)return;
+  if(total>0 && eur<MIN_ORDER_EUR){
+    note.innerHTML='⚠️ Minimum order is <strong>€100</strong>. Add <strong>'+eurShort(MIN_ORDER_EUR-eur)+'</strong> more to place your order.';
+    note.style.display='block';
+    if(btn){btn.classList.add('btn-disabled');}
+  } else {
+    note.style.display='none';
+    if(btn){btn.classList.remove('btn-disabled');}
+  }
 }
 renderSummary();
 function orderRef(){return '#PP-'+Math.floor(100000+Math.random()*900000);}
@@ -130,6 +146,12 @@ document.getElementById('coForm').addEventListener('submit',function(e){
   });
   if(!ok)return;
   if(!Object.keys(cart).length){alert('Your cart is empty. Please add products before checking out.');return;}
+  let totalGBP=0;Object.values(cart).forEach(i=>totalGBP+=i.product.priceGBP*i.qty);
+  if(totalGBP*CUR.EUR.r<MIN_ORDER_EUR){
+    updateMinNote(totalGBP);
+    document.getElementById('coMinNote').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
   const fd=new FormData(this);
   const ref=orderRef();
   const items=Object.values(cart).map(i=>i.product.name+' x'+i.qty).join(', ');

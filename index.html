@@ -271,6 +271,10 @@ footer{background:var(--navy);color:#8eacc8}
 .co-x:hover{background:var(--blue)}
 .bt-co{width:100%;background:var(--teal);color:var(--navy);border:none;border-radius:50px;padding:15px;font-size:15px;font-weight:700;font-family:inherit;transition:.2s;margin-bottom:8px}
 .bt-co:hover{background:#00e4cc}
+.bt-co-disabled{background:#c2ccd6;color:#6b7e96;cursor:not-allowed}
+.bt-co-disabled:hover{background:#c2ccd6}
+.min-note{background:#fdecec;border:1px solid #f5c2c2;color:#c0392b;border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.45;margin-bottom:12px;text-align:center}
+.min-note strong{color:#a93226}
 .bt-cont{width:100%;background:transparent;border:2px solid var(--border);border-radius:50px;padding:13px;font-size:13px;font-weight:600;color:var(--gray);font-family:inherit;transition:.2s}
 .bt-cont:hover{border-color:var(--navy);color:var(--navy)}
 .mov{position:fixed;inset:0;background:rgba(13,27,42,.75);z-index:600;opacity:0;pointer-events:none;transition:.3s;backdrop-filter:blur(4px)}
@@ -663,7 +667,7 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
 <div class="drawer" id="cartDrawer">
   <div class="dhead"><h3><span data-i18n="yourCart">Your Cart</span> (<span id="drawerCount">0</span>)</h3><button class="dclose" onclick="toggleCart()">✕</button></div>
   <div class="dbody" id="cartBody"></div>
-  <div class="dfoot"><div class="ctot"><span data-i18n="total">Total</span><strong id="drawerTotal">£0.00</strong></div><div class="pay-note"><div class="pay-note-t" data-i18n="payTitle">Payment Information</div><p class="pay-note-b" data-i18n="payBody">Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</p></div><button class="bt-co" data-i18n="checkout" onclick="openCheckout()">Proceed to Checkout →</button><button class="bt-cont" onclick="toggleCart()" data-i18n="continueShop">Continue Shopping</button></div>
+  <div class="dfoot"><div class="ctot"><span data-i18n="total">Total</span><strong id="drawerTotal">£0.00</strong></div><div class="min-note" id="minNote" style="display:none"></div><div class="pay-note"><div class="pay-note-t" data-i18n="payTitle">Payment Information</div><p class="pay-note-b" data-i18n="payBody">Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</p></div><button class="bt-co" data-i18n="checkout" onclick="openCheckout()">Proceed to Checkout →</button><button class="bt-cont" onclick="toggleCart()" data-i18n="continueShop">Continue Shopping</button></div>
 </div>
 <div class="drawer" id="wishDrawer">
   <div class="dhead"><h3><span data-i18n="wishlist2">Wishlist</span> (<span id="wishCount">0</span>)</h3><button class="dclose" onclick="toggleWish()">✕</button></div>
@@ -805,6 +809,9 @@ function brandedVial(p){
 }
 
 const CUR={GBP:{s:'£',r:1},EUR:{s:'€',r:1.17},USD:{s:'$',r:1.26}};
+const MIN_ORDER_EUR=100; // minimum order value in euros
+function cartEurTotal(){return Object.values(cart).reduce((s,i)=>s+i.product.priceGBP*i.qty,0)*CUR.EUR.r;}
+function eurShort(v){return '€'+v.toFixed(2);}
 let curC='GBP', cart={}, wish=new Set(), showAll=false, hIdx=0, hTimer, blogTab='latest', mQty=1, mProd=null;
 
 const byName=n=>PRODUCTS.find(p=>p.name===n);
@@ -866,6 +873,18 @@ function updateCart(){
   const items=Object.values(cart),count=items.reduce((s,i)=>s+i.qty,0),total=items.reduce((s,i)=>s+i.product.priceGBP*i.qty,0);
   document.getElementById('cartCount').textContent=count;document.getElementById('cartTotal').textContent=fmt(total);
   document.getElementById('drawerCount').textContent=count;document.getElementById('drawerTotal').textContent=fmt(total);
+  // Minimum order (€100) note + checkout button state
+  const eur=total*CUR.EUR.r, minNote=document.getElementById('minNote'), coBtn=document.querySelector('.bt-co');
+  if(minNote){
+    if(items.length && eur<MIN_ORDER_EUR){
+      minNote.innerHTML='⚠️ Minimum order is <strong>€100</strong>. Add <strong>'+eurShort(MIN_ORDER_EUR-eur)+'</strong> more to check out.';
+      minNote.style.display='block';
+      if(coBtn){coBtn.classList.add('bt-co-disabled');}
+    } else {
+      minNote.style.display='none';
+      if(coBtn){coBtn.classList.remove('bt-co-disabled');}
+    }
+  }
   const b=document.getElementById('cartBody');
   if(!items.length){b.innerHTML='<div class="empty"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><p style="font-size:16px;font-weight:600;margin-bottom:6px">'+t('cartEmpty')+'</p><p style="font-size:13px;color:#a0b4c8">'+t('cartEmptySub')+'</p></div>';}
   else{b.innerHTML=items.map(i=>'<div class="citem"><div class="ci-img"><img src="'+i.product.img+'"></div><div style="flex:1"><div class="ci-nm">'+i.product.name+'</div><div class="ci-pr">'+fmt(i.product.priceGBP*i.qty)+'</div><div class="ci-q"><button class="qb" onclick="chQty('+i.product.id+',-1)">−</button><span class="qv">'+i.qty+'</span><button class="qb" onclick="chQty('+i.product.id+',1)">+</button></div></div><button class="ci-rm" onclick="rmCart('+i.product.id+')">✕</button></div>').join('');}
@@ -936,6 +955,8 @@ function toggleWish(){const ov=document.getElementById('ov');document.getElement
 function closeAll(){document.getElementById('ov').classList.remove('open');document.getElementById('cartDrawer').classList.remove('open');document.getElementById('wishDrawer').classList.remove('open');syncOverlayState();}
 function openCheckout(){
   if(!Object.keys(cart).length){toast(t('cartEmpty'),'🛒');return;}
+  const eur=cartEurTotal();
+  if(eur<MIN_ORDER_EUR){toast('Minimum order is €100 — add '+eurShort(MIN_ORDER_EUR-eur)+' more','⚠️');return;}
   persistCart();
   window.location.href='checkout.html';
 }
