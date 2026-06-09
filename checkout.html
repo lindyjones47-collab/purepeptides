@@ -56,6 +56,25 @@
           <div class="field"><label>Preferred contact</label><select name="contactPref"><option>Email</option><option>WhatsApp</option><option>Either</option></select></div>
         </div>
         <div class="form-row">
+          <div class="field full">
+            <label>Payment method *</label>
+            <div class="pay-methods">
+              <label class="pay-method">
+                <input type="radio" name="payment" value="Bank Transfer" checked>
+                <span class="pm-card"><span class="pm-ic">🏦</span><span class="pm-t">Bank Transfer</span><span class="pm-s">Pay by bank</span></span>
+              </label>
+              <label class="pay-method">
+                <input type="radio" name="payment" value="USDT (Tether)">
+                <span class="pm-card"><span class="pm-ic">₮</span><span class="pm-t">USDT</span><span class="pm-s">Tether crypto</span></span>
+              </label>
+              <label class="pay-method">
+                <input type="radio" name="payment" value="Bitcoin (BTC)">
+                <span class="pm-card"><span class="pm-ic">₿</span><span class="pm-t">Bitcoin</span><span class="pm-s">BTC crypto</span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
           <div class="field full"><label>Order notes (optional)</label><textarea name="notes" placeholder="Anything we should know about your order or delivery..."></textarea></div>
         </div>
         <button type="submit" class="btn-primary btn-block">Place Order →</button>
@@ -71,7 +90,7 @@
       <div class="min-note" id="coMinNote" style="display:none"></div>
       <div class="pay-banner">
         <strong>💳 Payment Information</strong>
-        Thank you for your order. After checkout, our team will contact you via email or WhatsApp with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.
+        We accept <strong>Bank Transfer</strong>, <strong>USDT</strong> and <strong>Bitcoin</strong>. Choose your method in the form. After checkout, our team will contact you via email or WhatsApp with the payment details for your selected method. Your order is processed once payment has been received.
       </div>
       <a href="index.html#products" class="btn-dark btn-block" style="display:block;text-align:center;margin-top:14px;text-decoration:none">← Continue Shopping</a>
     </div>
@@ -84,7 +103,7 @@
     <div style="width:64px;height:64px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:32px">✓</div>
     <h2 style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--navy);margin-bottom:10px">Order Received!</h2>
     <p style="color:#46586b;font-size:14px;line-height:1.65;margin-bottom:14px">Thank you for your order, <strong id="okName">researcher</strong>. Your order reference is <strong id="okRef">#PP-000000</strong>.</p>
-    <p style="color:#46586b;font-size:14px;line-height:1.65;margin-bottom:14px">Our team will contact you shortly via <strong>email or WhatsApp</strong> with the bank payment details required to complete your purchase. Your order will be processed once payment has been received.</p>
+    <p style="color:#46586b;font-size:14px;line-height:1.65;margin-bottom:14px">Our team will contact you shortly via <strong>email or WhatsApp</strong> with the <strong><span id="okPay">Bank Transfer</span></strong> payment details required to complete your purchase. Your order will be processed once payment has been received.</p>
     <p style="background:#eef4fb;border-radius:10px;padding:11px 14px;color:#46586b;font-size:12.5px;line-height:1.55;margin-bottom:18px">📧 A confirmation receipt has been emailed to you. If it doesn't arrive within a few minutes, please check your <strong>spam / junk</strong> folder.</p>
     <a id="okWa" class="wa-start" style="text-decoration:none;margin-bottom:10px" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.5-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5C10 8.5 9.5 7.1 9.3 6.6c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 5 4.3 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4 0-.1-.2-.2-.5-.3z"/></svg>
@@ -155,13 +174,15 @@ document.getElementById('coForm').addEventListener('submit',function(e){
   }
   const fd=new FormData(this);
   const ref=orderRef();
+  const payMethod=fd.get('payment')||'Bank Transfer';
   const items=Object.values(cart).map(i=>i.product.name+' x'+i.qty).join(', ');
   const itemsDetailed=Object.values(cart).map(i=>'• '+i.product.name+'  ×'+i.qty+'  = '+fmt(i.product.priceGBP*i.qty)).join('\n');
   let total=0;Object.values(cart).forEach(i=>total+=i.product.priceGBP*i.qty);
   const fullName=(fd.get('firstName')+' '+fd.get('lastName')).trim();
   document.getElementById('okName').textContent=fd.get('firstName')||'researcher';
   document.getElementById('okRef').textContent=ref;
-  const waMsg='Hello PurePeptides! I have placed order '+ref+'. Name: '+fullName+'. Items: '+items+'. Total: '+fmt(total)+'. Please send bank payment details.';
+  const okPayEl=document.getElementById('okPay');if(okPayEl)okPayEl.textContent=payMethod;
+  const waMsg='Hello PurePeptides! I have placed order '+ref+'. Name: '+fullName+'. Items: '+items+'. Total: '+fmt(total)+'. Payment method: '+payMethod+'. Please send the payment details.';
   document.getElementById('okWa').href='https://wa.me/33758563517?text='+encodeURIComponent(waMsg);
   // Email the order to the shop (FormSubmit - free, no backend). Fire-and-forget.
   try{
@@ -177,12 +198,13 @@ document.getElementById('coForm').addEventListener('submit',function(e){
       'Reference: '+ref+'\n'+
       'Date: '+new Date().toLocaleString()+'\n\n'+
       'Items:\n'+itemsDetailed+'\n\n'+
-      'Order total: '+fmt(total)+'\n\n'+
+      'Order total: '+fmt(total)+'\n'+
+      'Payment method: '+payMethod+'\n\n'+
       'Delivery to:\n'+fullName+'\n'+addr+'\n\n'+
       '────────────────────\n'+
       'WHAT HAPPENS NEXT\n'+
       '────────────────────\n'+
-      'Our team will contact you shortly by email or WhatsApp with the bank payment details needed to complete your purchase. Your order will be processed once payment has been received.\n\n'+
+      'Our team will contact you shortly by email or WhatsApp with the '+payMethod+' payment details needed to complete your purchase. Your order will be processed once payment has been received.\n\n'+
       'Questions? Just reply to this email, or message us on WhatsApp at +33 7 58 56 35 17.\n\n'+
       'PurePeptides — Research Grade · Est. 2012\n'+
       'For research use only. Not for human consumption.';
@@ -201,6 +223,7 @@ document.getElementById('coForm').addEventListener('submit',function(e){
         'Phone / WhatsApp':fd.get('phone')||'',
         'Delivery Address':addr,
         'Preferred Contact':fd.get('contactPref')||'',
+        'Payment Method':payMethod,
         'Items':itemsDetailed,
         'Order Total':fmt(total),
         'Order Notes':fd.get('notes')||'—'
@@ -210,7 +233,7 @@ document.getElementById('coForm').addEventListener('submit',function(e){
   // Save order + clear cart
   try{
     const orders=JSON.parse(localStorage.getItem('pp_orders')||'{}');
-    orders[ref]={ref,date:new Date().toISOString(),name:fullName,email:fd.get('email'),items,total:fmt(total),status:'received'};
+    orders[ref]={ref,date:new Date().toISOString(),name:fullName,email:fd.get('email'),items,total:fmt(total),payment:payMethod,status:'received'};
     localStorage.setItem('pp_orders',JSON.stringify(orders));
     localStorage.setItem('pp_last_order',ref);
     localStorage.setItem('pp_cart',JSON.stringify({items:{},cur:curC}));
