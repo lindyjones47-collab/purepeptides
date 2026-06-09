@@ -133,15 +133,41 @@ document.getElementById('coForm').addEventListener('submit',function(e){
   const fd=new FormData(this);
   const ref=orderRef();
   const items=Object.values(cart).map(i=>i.product.name+' x'+i.qty).join(', ');
+  const itemsDetailed=Object.values(cart).map(i=>'• '+i.product.name+'  ×'+i.qty+'  = '+fmt(i.product.priceGBP*i.qty)).join('\n');
   let total=0;Object.values(cart).forEach(i=>total+=i.product.priceGBP*i.qty);
+  const fullName=(fd.get('firstName')+' '+fd.get('lastName')).trim();
   document.getElementById('okName').textContent=fd.get('firstName')||'researcher';
   document.getElementById('okRef').textContent=ref;
-  const waMsg='Hello PurePeptides! I have placed order '+ref+'. Name: '+fd.get('firstName')+' '+fd.get('lastName')+'. Items: '+items+'. Total: '+fmt(total)+'. Please send bank payment details.';
+  const waMsg='Hello PurePeptides! I have placed order '+ref+'. Name: '+fullName+'. Items: '+items+'. Total: '+fmt(total)+'. Please send bank payment details.';
   document.getElementById('okWa').href='https://wa.me/33758563517?text='+encodeURIComponent(waMsg);
+  // Email the order to the shop (FormSubmit - free, no backend). Fire-and-forget.
+  try{
+    const addr=[fd.get('addr1'),fd.get('addr2'),fd.get('city'),fd.get('zip'),fd.get('country')].filter(x=>x&&x.trim()).join(', ');
+    fetch('https://formsubmit.co/ajax/sales@europemeds.com',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        _subject:'🧪 New Order '+ref+' — PurePeptides',
+        _template:'table',
+        _captcha:'false',
+        _replyto:fd.get('email')||'',
+        'Order Reference':ref,
+        'Date':new Date().toLocaleString(),
+        'Customer Name':fullName,
+        'Customer Email':fd.get('email')||'',
+        'Phone / WhatsApp':fd.get('phone')||'',
+        'Delivery Address':addr,
+        'Preferred Contact':fd.get('contactPref')||'',
+        'Items':itemsDetailed,
+        'Order Total':fmt(total),
+        'Order Notes':fd.get('notes')||'—'
+      })
+    }).catch(function(){/* network error: order still saved + WhatsApp fallback available */});
+  }catch(e){}
   // Save order + clear cart
   try{
     const orders=JSON.parse(localStorage.getItem('pp_orders')||'{}');
-    orders[ref]={ref,date:new Date().toISOString(),name:fd.get('firstName')+' '+fd.get('lastName'),email:fd.get('email'),items,total:fmt(total),status:'received'};
+    orders[ref]={ref,date:new Date().toISOString(),name:fullName,email:fd.get('email'),items,total:fmt(total),status:'received'};
     localStorage.setItem('pp_orders',JSON.stringify(orders));
     localStorage.setItem('pp_last_order',ref);
     localStorage.setItem('pp_cart',JSON.stringify({items:{},cur:curC}));
