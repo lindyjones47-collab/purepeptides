@@ -164,7 +164,27 @@ document.getElementById('coForm').addEventListener('submit',function(e){
   document.getElementById('okWa').href='https://wa.me/33758563517?text='+encodeURIComponent(waMsg);
   // Email the order to the shop (FormSubmit - free, no backend). Fire-and-forget.
   try{
+    const custEmail=fd.get('email')||'';
     const addr=[fd.get('addr1'),fd.get('addr2'),fd.get('city'),fd.get('zip'),fd.get('country')].filter(x=>x&&x.trim()).join(', ');
+    // Personalised receipt sent automatically to the customer (FormSubmit autoresponder)
+    const receipt=
+      'Hi '+(fd.get('firstName')||'there')+',\n\n'+
+      'Thank you for your order with PurePeptides! This email confirms we have received it.\n\n'+
+      '────────────────────\n'+
+      'ORDER CONFIRMATION\n'+
+      '────────────────────\n'+
+      'Reference: '+ref+'\n'+
+      'Date: '+new Date().toLocaleString()+'\n\n'+
+      'Items:\n'+itemsDetailed+'\n\n'+
+      'Order total: '+fmt(total)+'\n\n'+
+      'Delivery to:\n'+fullName+'\n'+addr+'\n\n'+
+      '────────────────────\n'+
+      'WHAT HAPPENS NEXT\n'+
+      '────────────────────\n'+
+      'Our team will contact you shortly by email or WhatsApp with the bank payment details needed to complete your purchase. Your order will be processed once payment has been received.\n\n'+
+      'Questions? Just reply to this email, or message us on WhatsApp at +33 7 58 56 35 17.\n\n'+
+      'PurePeptides — Research Grade · Est. 2012\n'+
+      'For research use only. Not for human consumption.';
     fetch('https://formsubmit.co/ajax/sales@europemeds.com',{
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -172,11 +192,11 @@ document.getElementById('coForm').addEventListener('submit',function(e){
         _subject:'🧪 New Order '+ref+' — PurePeptides',
         _template:'table',
         _captcha:'false',
-        _replyto:fd.get('email')||'',
+        _autoresponse:receipt,
         'Order Reference':ref,
         'Date':new Date().toLocaleString(),
         'Customer Name':fullName,
-        'Customer Email':fd.get('email')||'',
+        'email':custEmail,
         'Phone / WhatsApp':fd.get('phone')||'',
         'Delivery Address':addr,
         'Preferred Contact':fd.get('contactPref')||'',
