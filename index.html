@@ -474,9 +474,9 @@ body.menu-open{overflow:hidden}
 }
 
 
-.wa-float{position:fixed;bottom:24px;right:24px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:12px;transition:opacity .2s,transform .2s}
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:600;display:flex;flex-direction:column;align-items:flex-end;gap:12px;transition:opacity .2s,transform .2s;pointer-events:none}
 body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.8);pointer-events:none}
-.wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.45);transition:transform .2s}
+.wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;border:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.45);transition:transform .2s;pointer-events:auto}
 .wa-btn:hover{transform:scale(1.08)}.wa-btn svg{width:32px;height:32px;fill:#fff}
 .wa-panel{background:#fff;border-radius:16px;box-shadow:var(--sh-lg);width:330px;max-width:calc(100vw - 48px);overflow:hidden;transform:scale(.9) translateY(10px);opacity:0;pointer-events:none;transform-origin:bottom right;transition:.25s;position:relative}
 .wa-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
@@ -516,7 +516,7 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
 
 <!-- HEADER -->
 <header class="hdr"><div class="hdr-in">
-  <a href="#" class="logo">
+  <a href="index.html" class="logo">
     <svg class="logo-mk" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="11" fill="#0d1b2a"/><circle cx="23" cy="23" r="13" stroke="#00c8b4" stroke-width="2"/><circle cx="23" cy="23" r="6.5" fill="#0077b6"/><path d="M16 23 Q23 14 30 23 Q23 32 16 23Z" fill="#00c8b4" opacity=".65"/><text x="23" y="27" text-anchor="middle" font-family="serif" font-size="8.5" font-weight="bold" fill="#fff">PP</text></svg>
     <div><div class="logo-nm">Pure<em>Peptides</em></div><div class="logo-tg" data-i18n="tagline">Research Grade · Est. 2012</div></div>
   </a>
@@ -535,14 +535,14 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
 <!-- NAV -->
 <nav class="nav"><div class="nav-in">
   <a href="#products" class="nitem active"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg><span data-i18n="nav_peptides">Peptides</span></a>
-  <a href="#" class="nitem"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg><span data-i18n="nav_lab">Lab Supplies</span></a>
-  <a href="#" class="nitem"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg><span data-i18n="nav_recon">Reconstituting / Storage</span></a>
-  <a href="#" class="nitem"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span data-i18n="nav_bundles">Bundles</span> <span class="nhot" data-i18n="hot">HOT</span></a>
+  <a href="#products" class="nitem"><svg viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg><span data-i18n="nav_lab">Lab Supplies</span></a>
+  <a href="calculator.html" class="nitem"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg><span data-i18n="nav_recon">Reconstituting / Storage</span></a>
+  <a href="#products" class="nitem"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span data-i18n="nav_bundles">Bundles</span> <span class="nhot" data-i18n="hot">HOT</span></a>
   <a href="faq.html" class="nitem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span data-i18n="nav_faq">FAQ</span></a>
   <a href="#blog" class="nitem"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg><span data-i18n="nav_blog">Blog</span></a>
   <a href="#about" class="nitem"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span data-i18n="nav_about">About Us</span></a>
   <a href="mailto:sales@europemeds.com" class="nitem"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.69a16 16 0 0 0 6 6l.95-1.7a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 15z"/></svg><span data-i18n="nav_contact">Contact</span></a>
-  <a href="#" class="nitem"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span data-i18n="nav_glossary">Peptide Glossary</span></a>
+  <a href="faq.html" class="nitem"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span data-i18n="nav_glossary">Peptide Glossary</span></a>
 </div></nav>
 
 <!-- HERO -->
@@ -565,7 +565,7 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
         <h1 class="hh1"><s style="text-decoration-color:#00c8b4;opacity:.6">Same Day</s><br>Dispatch,<br><em data-i18n="hero2_em">Order before 3pm</em></h1>
         <p class="hsub" data-i18n="hero2_sub">Order by 3 PM (Mon-Fri) for Same-Day Dispatch.</p>
         <p class="hbody" data-i18n="hero2_body">Timely, Secure, and Discreet Packaging for Your Research Essentials</p>
-        <div class="hbtns"><a href="#products" class="bt-teal"><span data-i18n="shopNow">Shop Now</span> →</a><a href="#" class="bt-ghost" data-i18n="deliveryInfo">Delivery Info</a></div>
+        <div class="hbtns"><a href="#products" class="bt-teal"><span data-i18n="shopNow">Shop Now</span> →</a><a href="delivery.html" class="bt-ghost" data-i18n="deliveryInfo">Delivery Info</a></div>
       </div><div class="hvis"><div class="hvis-ring"></div><svg viewBox="0 0 340 340"><circle cx="170" cy="170" r="140" fill="#15293f" opacity=".5"/><rect x="90" y="145" width="160" height="115" rx="6" fill="#1a3a5a" stroke="#2e9cdb" stroke-width="1.5"/><polygon points="90,145 170,105 250,145" fill="#2a5a80" stroke="#2e9cdb" stroke-width="1.5"/><rect x="158" y="105" width="24" height="155" fill="#00c8b4" opacity=".2"/><rect x="108" y="168" width="124" height="62" rx="6" fill="#0a2040"/><text x="170" y="190" text-anchor="middle" font-family="serif" font-size="11" fill="#00c8b4">PurePeptides</text><text x="170" y="206" text-anchor="middle" font-family="monospace" font-size="7" fill="#7090b0">Research Grade Peptides</text><rect x="118" y="214" width="104" height="13" rx="3" fill="#0077b6" opacity=".4"/><text x="170" y="224" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#fff">TRACKED &amp; INSURED</text></svg></div></div>
     </div>
     <div class="hslide">
@@ -575,7 +575,7 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
         <h1 class="hh1" data-i18n-html="hero3_h">Need It<br><em>Fast?</em></h1>
         <p class="hsub" data-i18n="hero3_sub">We Ship the Same Day When You Order Before 3PM!</p>
         <p class="hbody" data-i18n="hero3_body">Tracked, insured and discreet packaging guaranteed.</p>
-        <div class="hbtns"><a href="#products" class="bt-teal"><span data-i18n="shopNow2">Shop Now</span> →</a><a href="#" class="bt-ghost" data-i18n="trackOrder">Track My Order</a></div>
+        <div class="hbtns"><a href="#products" class="bt-teal"><span data-i18n="shopNow2">Shop Now</span> →</a><a href="order-status.html" class="bt-ghost" data-i18n="trackOrder">Track My Order</a></div>
       </div><div class="hvis"><div class="hvis-ring"></div><img id="heroImg3" alt="Fast Delivery"></div></div>
     </div>
   </div>
@@ -613,7 +613,7 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
 
 <!-- PRODUCTS -->
 <section class="prods" id="products"><div class="sec-in">
-  <div class="sec-hd"><div><div class="eyebrow" data-i18n="prod_eye">#Research Peptides</div><h2 class="sec-ti" data-i18n-html="prod_h">All <em>Products</em></h2></div><a href="#" class="seeall"><span data-i18n="seeAll">See all products</span> →</a></div>
+  <div class="sec-hd"><div><div class="eyebrow" data-i18n="prod_eye">#Research Peptides</div><h2 class="sec-ti" data-i18n-html="prod_h">All <em>Products</em></h2></div><a href="#products" class="seeall" onclick="if(!showAll)toggleShowAll();"><span data-i18n="seeAll">See all products</span> →</a></div>
   <div class="pgrid" id="pgrid"></div>
   <div class="seeall-w"><button class="bt-od" onclick="toggleShowAll()"><span id="showAllText">Show All 98 Products</span> ↓</button></div>
 </div></section>
@@ -649,11 +649,11 @@ body.overlay-open .wa-float,body.menu-open .wa-float{opacity:0;transform:scale(.
       <p class="ft-disc"><strong>Disclaimer for PurePeptides Purchases:</strong> By purchasing from PurePeptides™, you agree: <strong>Research Use Only</strong> — all products are exclusively for research purposes, not for human use, therapeutic, diagnostic, or clinical application. <strong>Not Medical Products.</strong> <strong>Compliance and Responsibility</strong> rests with the buyer. <strong>No Returns</strong> due to the nature of products sold.</p>
     </div>
     <div><div class="ft-ct" data-i18n="ft_info">Information</div><div class="ft-lk"><a href="index.html#about" data-i18n="ft_about">About Us</a><a href="index.html#blog" data-i18n="ft_blog">Blog</a><a href="faq.html" data-i18n="ft_faq">FAQ</a><a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a><a href="terms.html" data-i18n="ft_terms">Terms &amp; Conditions</a></div></div>
-    <div><div class="ft-ct" data-i18n="ft_account">My Account</div><div class="ft-lk"><a href="order-status.html" data-i18n="ft_login">Order Status</a><a href="order-status.html" data-i18n="ft_orders">Order History</a><a href="#" data-i18n="ft_news">Newsletter</a><a href="returns.html" data-i18n="ft_returns">Returns</a></div></div>
+    <div><div class="ft-ct" data-i18n="ft_account">My Account</div><div class="ft-lk"><a href="order-status.html" data-i18n="ft_login">Order Status</a><a href="order-status.html" data-i18n="ft_orders">Order History</a><a href="#newsletter" data-i18n="ft_news">Newsletter</a><a href="returns.html" data-i18n="ft_returns">Returns</a></div></div>
     <div><div class="ft-ct" data-i18n="ft_service">Customer Service</div><div class="ft-lk"><a href="mailto:sales@europemeds.com" data-i18n="ft_contact">Contact Us</a><a href="mailto:sales@europemeds.com" data-i18n="ft_wholesale">Wholesale</a><a href="https://wa.me/33758563517" target="_blank" rel="noopener" data-i18n="ft_sitemap">WhatsApp Chat</a><a href="delivery.html" data-i18n="ft_delivery">Delivery Information</a></div></div>
   </div>
   <hr class="ft-hr">
-  <div class="ft-nl"><div class="nl-t">📬 <span data-i18n="nl_text">Stay up to date with news and promotions by signing up for our newsletter</span></div><div class="nl-f"><input type="email" class="nl-i" placeholder="Enter email" data-i18n-ph="nl_ph"><button class="bt-nl" data-i18n="subscribe">Subscribe</button></div></div>
+  <div class="ft-nl" id="newsletter"><div class="nl-t">📬 <span data-i18n="nl_text">Stay up to date with news and promotions by signing up for our newsletter</span></div><div class="nl-f"><input type="email" class="nl-i" id="nlEmail" placeholder="Enter email" data-i18n-ph="nl_ph"><button class="bt-nl" data-i18n="subscribe" onclick="subscribeNewsletter()">Subscribe</button></div></div>
   <hr class="ft-hr">
   <div class="ft-bot"><span data-i18n="ft_contactline">For all orders and inquiries, contact</span> <a href="mailto:sales@europemeds.com" style="color:#00c8b4;font-weight:600">sales@europemeds.com</a> · WhatsApp <a href="https://wa.me/33758563517" target="_blank" rel="noopener" style="color:#00c8b4;font-weight:600">+33 7 58 56 35 17</a><br>© 2012–2025 PurePeptides™ | Company No. 08033431 | VAT No. 271775577<br>Registered Office: 409 Linthorpe Road, Middlesbrough, TS5 6JN, United Kingdom</div>
 </footer>
@@ -906,7 +906,7 @@ const BLOG={latest:[
   {date:'28 Feb',title:'MOTS-c Peptide Stability: How Long After Reconstitution?',ex:'There is much speculation about how long MOTS-c remains stable after reconstitution. Recent scientific studies suggest otherwise.',views:'56,161'}
 ]};
 function blogImg(t){return '<svg viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="b'+t.replace(/[^a-z]/gi,'')+'"><stop offset="0%" stop-color="#0077b6" stop-opacity=".4"/><stop offset="100%" stop-color="#0d1b2a" stop-opacity="0"/></radialGradient></defs><rect width="400" height="225" fill="#0d1b2a"/><rect width="400" height="225" fill="url(#b'+t.replace(/[^a-z]/gi,'')+')"/><g stroke="#1a3a5a" stroke-width=".5" opacity=".3"><line x1="0" y1="56" x2="400" y2="56"/><line x1="0" y1="112" x2="400" y2="112"/><line x1="0" y1="168" x2="400" y2="168"/><line x1="100" y1="0" x2="100" y2="225"/><line x1="200" y1="0" x2="200" y2="225"/><line x1="300" y1="0" x2="300" y2="225"/></g><circle cx="310" cy="100" r="55" stroke="#00c8b4" stroke-width="1" fill="none" opacity=".2"/><circle cx="310" cy="100" r="34" fill="#15293f" opacity=".7"/><text x="310" y="106" text-anchor="middle" font-family="serif" font-size="13" fill="#00c8b4" opacity=".7">PP</text><text x="28" y="150" font-family="monospace" font-size="9" fill="#00c8b4" opacity=".6">PurePeptides Research Hub</text></svg>';}
-function renderBlog(){document.getElementById('bgrid').innerHTML=(BLOG_I18N[lang]||BLOG)[blogTab].slice(0,4).map(b=>'<div class="bcard"><div class="bimg">'+blogImg(b.title)+'<span class="bdate">'+b.date+'</span></div><div class="bbody"><div class="bmeta">By Chris · 👁 '+b.views+' views</div><div class="btitle"><a href="#">'+b.title+'</a></div><div class="bex">'+b.ex+'</div><a href="#" class="bread">\'+t(\'readMore\')+\'</a></div></div>').join('');}
+function renderBlog(){document.getElementById('bgrid').innerHTML=(BLOG_I18N[lang]||BLOG)[blogTab].slice(0,4).map(b=>'<div class="bcard"><div class="bimg">'+blogImg(b.title)+'<span class="bdate">'+b.date+'</span></div><div class="bbody"><div class="bmeta">By Chris · 👁 '+b.views+' views</div><div class="btitle"><a href="faq.html">'+b.title+'</a></div><div class="bex">'+b.ex+'</div><a href="faq.html" class="bread">'+t('readMore')+'</a></div></div>').join('');}
 function switchBlog(el,t){document.querySelectorAll('.btab').forEach(x=>x.classList.remove('on'));el.classList.add('on');blogTab=t;renderBlog();}
 
 const si=document.getElementById('searchInput'),sr=document.getElementById('searchResults');
@@ -915,7 +915,8 @@ si.addEventListener('input',function(){const q=this.value.trim().toLowerCase();i
   sr.innerHTML=hits.length?hits.map(p=>'<div class="sr-it" onclick="openModal('+p.id+');sr.classList.remove(\'open\');si.value=\'\'"><div class="sr-th"><img src="'+p.img+'"></div><div><div class="sr-nm">'+p.name+'</div><div class="sr-pr">'+fmt(p.priceGBP)+'</div></div></div>').join(''):'<div class="sr-none">'+t('noResults')+' "'+q+'"</div>';
   sr.classList.add('open');});
 document.addEventListener('click',e=>{if(!e.target.closest('.srch'))sr.classList.remove('open');});
-function doSearch(){if(si.value.trim())sr.classList.add('open');}
+function doSearch(){si.dispatchEvent(new Event('input'));si.focus();}
+function subscribeNewsletter(){var e=document.getElementById('nlEmail');var v=(e.value||'').trim();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){toast('Please enter a valid email address','✉️');e.focus();return;}try{var subs=JSON.parse(localStorage.getItem('pp_newsletter')||'[]');if(!subs.includes(v))subs.push(v);localStorage.setItem('pp_newsletter',JSON.stringify(subs));}catch(err){}e.value='';toast('Thanks for subscribing! 🎉','✓');}
 
 function animCtr(el,target,dur){let s=null;const step=ts=>{if(!s)s=ts;const pr=Math.min((ts-s)/dur,1);el.textContent=Math.floor(pr*target);if(pr<1)requestAnimationFrame(step);else el.textContent=target;};requestAnimationFrame(step);}
 const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){animCtr(document.getElementById('ctr1'),3000,1800);animCtr(document.getElementById('ctr2'),15,1800);so.disconnect();}})},{threshold:.3});
