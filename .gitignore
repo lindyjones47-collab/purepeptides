@@ -1,0 +1,14 @@
+# MCP configuration (may reference local paths / project IDs) - keep local
+.mcp.json
+
+# Credentials & secrets - NEVER commit these
+client_secret*.json
+*.apps.googleusercontent.com.json
+application_default_credentials.json
+*service-account*.json
+*credentials*.json
+.env
+.env.*
+
+# Local tooling
+.claude/
