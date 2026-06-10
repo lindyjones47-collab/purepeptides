@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://pure-peptides.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pure-peptides.org/fr/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pure-peptides.org/de/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pure-peptides.org/nl/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -94,6 +95,16 @@
   <url><loc>https://pure-peptides.org/products/vesugen-10mg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pure-peptides.org/products/vilon-20mg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://pure-peptides.org/products/vip-5mg/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/bpc-157/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/tb-500/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/ghk-cu/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/ipamorelin/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/cjc-1295/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/semax/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/selank/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/tesamorelin/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/pt-141/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://pure-peptides.org/en-gb/products/sermorelin/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://pure-peptides.org/fr/products/bpc-157/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pure-peptides.org/fr/products/tb-500/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pure-peptides.org/fr/products/ghk-cu/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
