@@ -46,6 +46,27 @@ function mountWhatsApp(){
 }
 function toggleWA(){ document.getElementById('waPanel').classList.toggle('open'); }
 
+// Inject Tawk.to live chat + real-time visitor monitoring.
+// Pinned bottom-LEFT so it doesn't collide with the WhatsApp float (bottom-right).
+function mountTawk(){
+  if (document.querySelector('script[src*="embed.tawk.to"]')) return; // idempotent
+  const Tawk_API = window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_LoadStart = new Date();
+  Tawk_API.customStyle = {
+    visibility: {
+      desktop: { position: 'bl', xOffset: 20, yOffset: 20 },
+      mobile:  { position: 'bl', xOffset: 10, yOffset: 20 }
+    }
+  };
+  const s1 = document.createElement('script');
+  const s0 = document.getElementsByTagName('script')[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/6a33c54645840f1d49425270/default';
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s0.parentNode.insertBefore(s1, s0);
+}
+
 // FAQ accordion
 function toggleFaq(el){ el.parentElement.classList.toggle('open'); }
 
@@ -128,4 +149,5 @@ document.addEventListener('keydown', function(e){
 document.addEventListener('DOMContentLoaded', function(){
   mountWhatsApp();
   mountMobileMenu();
+  mountTawk();
 });
