@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L5CK9G9L1Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L5CK9G9L1Q');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peptide Concentration Converter | mg/mL, mcg/mL, Molarity — PurePeptides</title>
+<meta name="description" content="A free peptide concentration converter: convert between mg/mL, mcg/mL (µg/mL) and ng/mL, calculate molarity from molecular weight, and work out the volume to draw for a target amount. For laboratory research use only.">
+<link rel="canonical" href="https://pure-peptides.org/converter.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PurePeptides">
+<meta property="og:title" content="Peptide Concentration Converter">
+<meta property="og:url" content="https://pure-peptides.org/converter.html">
+<meta property="og:image" content="https://pure-peptides.org/assets/og-image.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pure-peptides.org/assets/og-image.svg">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Peptide Concentration Converter","url":"https://pure-peptides.org/converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"description":"Convert peptide concentrations between mg/mL, mcg/mL and ng/mL, calculate molarity from molecular weight, and work out the volume to draw for a target amount. Laboratory research use only."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://pure-peptides.org/"},{"@type":"ListItem","position":2,"name":"Concentration Converter","item":"https://pure-peptides.org/converter.html"}]}</script>
+</head>
+<body>
+<div class="topbar"><div class="topbar-in">
+  <div>🚚 Same-day dispatch before 3PM · 🔬 &gt;99% purity guaranteed</div>
+  <div class="topbar-r">
+    <a href="calculator.html">Peptide Calculator Tool</a><span class="tb-div">|</span>
+    <a href="order-status.html">Check Order Status</a><span class="tb-div">|</span>
+    <a href="https://wa.me/33758563517" target="_blank" rel="noopener">💬 WhatsApp Chat</a>
+  </div>
+</div></div>
+<header class="hdr"><div class="hdr-in">
+  <a href="index.html" class="logo">
+    <svg class="logo-mk" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="11" fill="#0d1b2a"/><circle cx="23" cy="23" r="13" stroke="#00c8b4" stroke-width="2"/><circle cx="23" cy="23" r="6.5" fill="#0077b6"/><path d="M16 23 Q23 14 30 23 Q23 32 16 23Z" fill="#00c8b4" opacity=".65"/><text x="23" y="27" text-anchor="middle" font-family="serif" font-size="8.5" font-weight="bold" fill="#fff">PP</text></svg>
+    <div><div class="logo-nm">Pure<em>Peptides</em></div><div class="logo-tg">Research Grade · Est. 2012</div></div>
+  </a>
+  <nav class="hdr-nav">
+    <a href="index.html">Home</a><a href="index.html#products">Shop</a><a href="blog/">Blog</a>
+    <a href="glossary/">Glossary</a><a href="calculator.html">Calculator</a>
+    <a href="checkout.html" class="hdr-cta">Checkout</a>
+  </nav>
+</div></header>
+<section class="page-hero"><div class="page-hero-in"><div class="crumbs"><a href="index.html">Home</a> &nbsp;/&nbsp; Concentration Converter</div><h1>Peptide Concentration <em>Converter</em></h1><p>Convert concentration units, calculate molarity, and find the volume to draw — for laboratory research use only.</p></div></section>
+<main class="wrap">
+
+<div class="calc-grid">
+  <div>
+    <div class="form-card">
+      <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px">Concentration &amp; molarity</h2>
+      <p style="color:var(--gray);font-size:13.5px;margin-bottom:22px">Enter a concentration to see it in every unit. Add a molecular weight to convert to molarity.</p>
+      <div class="form-row"><div class="field full"><label>Concentration value</label><input type="number" id="cVal" value="2.5" min="0" step="any"></div></div>
+      <div class="form-row"><div class="field full"><label>Concentration unit</label><select id="cUnit"><option value="1">mg/mL</option><option value="0.001">mcg/mL (µg/mL)</option><option value="0.000001">ng/mL</option></select></div></div>
+      <div class="form-row"><div class="field full"><label>Molecular weight (g/mol) — optional, for molarity</label><input type="number" id="cMw" value="711.9" min="0" step="any"></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="calc-out">
+      <h3>Equivalent concentrations</h3>
+      <div class="calc-line"><span>mg/mL</span><strong id="oMg">2.50</strong></div>
+      <div class="calc-line"><span>mcg/mL (µg/mL)</span><strong id="oMcg">2500</strong></div>
+      <div class="calc-line"><span>ng/mL</span><strong id="oNg">2,500,000</strong></div>
+      <div class="calc-line"><span>Molarity (mmol/L)</span><strong id="oMmol">3.51</strong></div>
+      <div class="calc-line"><span>Molarity (µmol/L)</span><strong id="oUmol">3,512</strong></div>
+      <p class="calc-note">For laboratory research calculations only. Always verify measurements independently. Not intended to guide human or animal use.</p>
+    </div>
+  </div>
+</div>
+
+<div class="calc-grid" style="margin-top:24px">
+  <div>
+    <div class="form-card">
+      <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px">Volume to draw</h2>
+      <p style="color:var(--gray);font-size:13.5px;margin-bottom:22px">Given a stock concentration, work out the volume that contains a target amount of peptide.</p>
+      <div class="form-row"><div class="field full"><label>Stock concentration (mg/mL)</label><input type="number" id="vConc" value="2.5" min="0" step="any"></div></div>
+      <div class="form-row"><div class="field full"><label>Target amount (mcg)</label><input type="number" id="vTarget" value="250" min="0" step="any"></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="calc-out">
+      <h3>Volume required</h3>
+      <div class="calc-result" id="vMl">0.100</div>
+      <div class="calc-result-l">millilitres (mL)</div>
+      <div class="calc-line"><span>Volume</span><strong id="vUl">100 µL</strong></div>
+      <div class="calc-line"><span>Amount per 1 mL</span><strong id="vPerMl">2500 mcg</strong></div>
+      <p class="calc-note">For laboratory research calculations only. Always verify measurements independently. Not intended to guide human or animal use.</p>
+    </div>
+  </div>
+</div>
+
+<div class="calc-grid" style="margin-top:24px">
+  <div>
+    <div class="form-card">
+      <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:6px">Mass units</h2>
+      <p style="color:var(--gray);font-size:13.5px;margin-bottom:22px">Convert a mass between grams, milligrams, micrograms and nanograms.</p>
+      <div class="form-row"><div class="field full"><label>Mass value</label><input type="number" id="mVal" value="5" min="0" step="any"></div></div>
+      <div class="form-row"><div class="field full"><label>Mass unit</label><select id="mUnit"><option value="1000">g</option><option value="1" selected>mg</option><option value="0.001">mcg (µg)</option><option value="0.000001">ng</option></select></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="calc-out">
+      <h3>Equivalent masses</h3>
+      <div class="calc-line"><span>Grams (g)</span><strong id="mG">0.005</strong></div>
+      <div class="calc-line"><span>Milligrams (mg)</span><strong id="mMg">5</strong></div>
+      <div class="calc-line"><span>Micrograms (mcg)</span><strong id="mMcg">5,000</strong></div>
+      <div class="calc-line"><span>Nanograms (ng)</span><strong id="mNg">5,000,000</strong></div>
+      <p class="calc-note">For laboratory research calculations only.</p>
+    </div>
+  </div>
+</div>
+
+<div class="form-card" style="margin-top:24px">
+  <h2 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:10px">How to use this converter</h2>
+  <p style="color:var(--gray);font-size:14px;line-height:1.7">Concentration in <strong>mg/mL</strong> is numerically equal to <strong>g/L</strong>, so molarity is simply the concentration in g/L divided by the molecular weight: <em>mol/L = (mg/mL) ÷ MW</em>. To prepare a stock solution from a lyophilised vial in the first place, use our <a href="calculator.html" style="color:var(--blue);font-weight:700">reconstitution calculator</a>. For definitions of the terms here, see the <a href="glossary/" style="color:var(--blue);font-weight:700">peptide glossary</a>; for compound-specific molecular weights, browse the <a href="glossary/#term-ipamorelin" style="color:var(--blue);font-weight:700">research guides</a> or the <a href="index.html#products" style="color:var(--blue);font-weight:700">catalogue</a>.</p>
+</div>
+
+</main>
+<footer>
+  <div class="ft-top">
+    <div><div class="logo-nm" style="font-size:24px;color:#fff;margin-bottom:10px">Pure<em style="color:#00c8b4;font-style:normal">Peptides</em></div>
+      <p class="ft-disc"><strong>Disclaimer:</strong> All products are strictly for <strong>research purposes only</strong> — not for human use. Not medical products.</p>
+      <p class="ft-disc" style="margin-top:10px"><strong>Contact:</strong> <a href="mailto:sales@europemeds.com" style="color:#00c8b4">sales@europemeds.com</a><br><strong>WhatsApp:</strong> <a href="https://wa.me/33758563517" style="color:#00c8b4" target="_blank" rel="noopener">+33 7 58 56 35 17</a></p>
+    </div>
+    <div><div class="ft-ct">Information</div><div class="ft-lk"><a href="index.html#about">About Us</a><a href="blog/">Blog</a><a href="glossary/">Glossary</a><a href="faq.html">FAQ</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms &amp; Conditions</a></div></div>
+    <div><div class="ft-ct">Tools</div><div class="ft-lk"><a href="calculator.html">Reconstitution Calculator</a><a href="converter.html">Concentration Converter</a><a href="glossary/">Peptide Glossary</a></div></div>
+    <div><div class="ft-ct">Customer Service</div><div class="ft-lk"><a href="mailto:sales@europemeds.com">Contact Us</a><a href="delivery.html">Delivery Information</a><a href="https://wa.me/33758563517" target="_blank" rel="noopener">WhatsApp Chat</a></div></div>
+  </div>
+  <hr class="ft-hr">
+  <div class="ft-bot">For all orders and inquiries, contact <a href="mailto:sales@europemeds.com">sales@europemeds.com</a> · WhatsApp <a href="https://wa.me/33758563517" target="_blank" rel="noopener">+33 7 58 56 35 17</a><br>© 2012–2025 PurePeptides™ | Company No. 08033431 | VAT No. 271775577</div>
+</footer>
+<script src="assets/shared.js"></script>
+<script>
+function fmt(n){
+  if(!isFinite(n)) return '—';
+  if(n===0) return '0';
+  var a=Math.abs(n), dec;
+  if(a>=1000) dec=0; else if(a>=100) dec=1; else if(a>=1) dec=3; else if(a>=0.001) dec=5; else dec=8;
+  return n.toLocaleString('en-GB',{maximumFractionDigits:dec});
+}
+function conv(){
+  // Concentration & molarity
+  var val=parseFloat(document.getElementById('cVal').value)||0;
+  var factor=parseFloat(document.getElementById('cUnit').value)||1; // to mg/mL
+  var mw=parseFloat(document.getElementById('cMw').value)||0;
+  var mgml=val*factor;
+  document.getElementById('oMg').textContent=fmt(mgml);
+  document.getElementById('oMcg').textContent=fmt(mgml*1000);
+  document.getElementById('oNg').textContent=fmt(mgml*1000000);
+  if(mw>0){
+    var mmol=mgml/mw*1000;       // mmol/L
+    document.getElementById('oMmol').textContent=fmt(mmol);
+    document.getElementById('oUmol').textContent=fmt(mmol*1000);
+  } else {
+    document.getElementById('oMmol').textContent='enter MW';
+    document.getElementById('oUmol').textContent='enter MW';
+  }
+  // Volume to draw
+  var vc=parseFloat(document.getElementById('vConc').value)||0;     // mg/mL
+  var vt=parseFloat(document.getElementById('vTarget').value)||0;   // mcg
+  var vcMcg=vc*1000;                                                // mcg/mL
+  var ml=vcMcg>0? vt/vcMcg : 0;
+  document.getElementById('vMl').textContent=fmt(ml);
+  document.getElementById('vUl').textContent=fmt(ml*1000)+' µL';
+  document.getElementById('vPerMl').textContent=fmt(vcMcg)+' mcg';
+  // Mass units
+  var mv=parseFloat(document.getElementById('mVal').value)||0;
+  var mf=parseFloat(document.getElementById('mUnit').value)||1;     // to mg
+  var mg=mv*mf;
+  document.getElementById('mG').textContent=fmt(mg/1000);
+  document.getElementById('mMg').textContent=fmt(mg);
+  document.getElementById('mMcg').textContent=fmt(mg*1000);
+  document.getElementById('mNg').textContent=fmt(mg*1000000);
+}
+['cVal','cUnit','cMw','vConc','vTarget','mVal','mUnit'].forEach(function(id){document.getElementById(id).addEventListener('input',conv);});
+conv();
+</script>
+</body></html>
